@@ -1,0 +1,56 @@
+### Software
+A solution implemented in Python with instructions on how to run locally and how to call the endpoints via `curl`.
+
+via curl: 
+curl -d '{"symbol": “AAPL”, "date”: “2022-09-16”}' -H 'Content-Type: application/json' http://127.0.0.1:8000/lookup/ 
+   8000 could be replaced with your preferred port
+   symbol and dates are variable here
+   This return the open low high close volume based on date amd symbol given
+curl -d '{"symbol": “AAPL”, "range": 5}' -H 'Content-Type: application/json' http://127.0.0.1:8000/min/
+    symbol and range are variable here
+    This returns minimum value traded over range numbers of days
+curl -d '{"symbol": “AAPL”, "range": 5}' -H 'Content-Type: application/json' http://127.0.0.1:8000/max/
+    symbol and range are variable here
+    This returns maximum value traded over range numbers of days
+Alternatively, this can be run by copy and pasting the endpoints(eg. http://127.0.0.1:8000/lookup/) 
+given above directly into the web browser and changing the inputs in views.py
+
+files: 
+sixthStreet/quickstart/views.py
+sixthStreet/quickstart/LazyLoader.py
+urls.py (should have urls to all end points)
+
+### Discussion
+- What compromises did you make due to time constraints?
+   Did not write validations
+   I could have improved code quality
+   I could have been more creative with the excercise in terms of adding extra features
+   Learn more about the challenges that can come while running the webapp through curl command like ports refusal to connect
+
+
+- What would you do differently if this software was meant for production use?
+   I would write validations for requests
+   I would create a form through model and serializers to enter the required input such as symbol, date, range
+   More testing
+   Write edge cases for the inputs such as type of input, right or wrong imput
+   Check user permission to access web page
+
+- Propose how you might implement authentication, such that only authorized users may hit these endpoints.
+In the example below if thea  user is trying to access a webpage, the following would be done:
+
+    from requests.auth import HTTPBasicAuth
+    # Making a get request
+    webpage = 'https://abc.com/user (for eg.)
+    response = requests.get(' user, ',
+            auth = HTTPBasicAuth('user', 'pass')) where user is the usernam and pass is the password
+    If response is 200, allow the user else the user does not have permission to acees the web page
+    
+- How much time did you spend on this exercise?
+    Around 2 days:
+      The coding part was around 3 hours
+      The rest was given how RestApi works in Django, installations, running the webapp with quite  failed attempts in terms of connection with the port, server etc.
+- Please include any other comments about your implementation.
+      
+- Please include any general feedback you have about the exercise.
+      creating an application from scratch was a really fun exercise as I have learnt a lot about stocks overtime in general and have done investements in the past.
+     I learnt a lot about framework, installations, and resolving the problems when working under pressure 
